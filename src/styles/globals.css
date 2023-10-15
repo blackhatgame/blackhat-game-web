@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb));
+  margin: 0 !important;
+  height: 100%;
+}
+
+/**
+ * Modfied version of [termynal.js](https://github.com/ines/termynal/blob/master/termynal.css).
+ *
+ * @author Ines Montani <ines@ines.io>
+ * @version 0.0.1
+ * @license MIT
+ */
+ .react-terminal-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #252a33;
+  color: #eee;
+  font-size: 14px;
+  font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
+  padding: 75px 24px 35px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+ }
+
+.react-terminal {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.react-terminal-wrapper.react-terminal-light {
+  background: #ddd;
+  color: #1a1e24;
+}
+
+.react-terminal-window-buttons {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.react-terminal-window-buttons button {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 0;
+}
+
+.react-terminal-window-buttons button.clickable {
+  cursor: pointer;
+}
+
+.react-terminal-window-buttons button.red-btn {
+  background: #d9515d;
+}
+
+.react-terminal-window-buttons button.yellow-btn {
+  background: #f4c025;
+}
+
+.react-terminal-window-buttons button.green-btn {
+  background: #3ec930;
+}
+
+.react-terminal-wrapper:after {
+  content: attr(data-terminal-name);
+  position: absolute;
+  color: #a2a2a2;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.react-terminal-wrapper.react-terminal-light:after {
+  color: #D76D77;
+}
+
+.react-terminal-line {
+  word-break: break-word;
+}
+
+.react-terminal-line:before {
+  /* Set up defaults and ensure empty lines are displayed. */
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  color: #a2a2a2;
+}
+
+.react-terminal-light .react-terminal-line:before {
+  color: #D76D77;
+}
+
+.react-terminal-input:before {
+  margin-right: 0.75em;
+  content: '$';
+}
+
+.react-terminal-input[data-terminal-prompt]:before {
+  content: attr(data-terminal-prompt);
+}
+
+.react-terminal-wrapper:focus-within .react-terminal-active-input .cursor {
+  position: relative;
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  top: 0.225em;
+  background: #fff;
+  -webkit-animation: blink 1s infinite;
+          animation: blink 1s infinite;
+}
+
+/* Cursor animation */
+
+@-webkit-keyframes blink {
+  50% {
+      opacity: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+      opacity: 0;
+  }
+}
+
+.terminal-hidden-input {
+    position: fixed;
+    left: -1000px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.react-terminal::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.react-terminal {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
